@@ -1,6 +1,7 @@
 package br.com.farmacia.servicos;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -23,6 +24,10 @@ public class ClienteServico implements Serializable {
 	@Transactional
 	public void excluir(Cliente cliente) {
 		clienteRepositorio.excluir(cliente);
+	}
+
+	public List<Cliente> listar() {
+		return clienteRepositorio.listar();
 	}
 
 }
