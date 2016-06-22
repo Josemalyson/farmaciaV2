@@ -1,7 +1,6 @@
 package br.com.farmacia.entidades;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,47 +10,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import br.com.farmacia.generics.GenericEntity;
 
 @Entity
-@Table(name = "TB_FARMACIA_CLIENTE")
-public class Cliente extends GenericEntity {
+@Table(name = "TB_FARMACIA_FORNECEDOR")
+public class Fornecedor extends GenericEntity {
 
 	private static final long serialVersionUID = 6091984940990541385L;
 
 	// ATRIBUTOS
 
 	@Id
-	@Column(name = "ID_CLIENTE")
+	@Column(name = "ID_FORNECEDOR")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(name = "DS_NOME")
 	private String nome;
 
-	@Column(name = "NU_CPF")
-	private String cpf;
-
-	@Column(name = "NU_RG")
-	private String rg;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DT_NASCIMENTO")
-	private Date dtNascimento;
-
-	@Column(name = "DS_EMAIL")
-	private String email;
-
-	@Column(name = "NU_TELEFONE")
-	private String telefone;
+	@Column(name = "NU_CNPJ")
+	private String cnpj;
 
 	// RELACIONAMENTOS
 
-	@OneToMany(mappedBy = "cliente")
-	private List<Pedido> pedidoList;
+	@OneToMany(mappedBy = "fornecedor")
+	private List<Produto> produtoList;
 
 	// GET E SET
 	@Override
@@ -75,52 +59,20 @@ public class Cliente extends GenericEntity {
 		this.nome = nome;
 	}
 
-	public Date getDtNascimento() {
-		return dtNascimento;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setDtNascimento(Date dtNascimento) {
-		this.dtNascimento = dtNascimento;
+	public List<Produto> getProdutoList() {
+		return produtoList;
 	}
 
-	public List<Pedido> getPedidoList() {
-		return pedidoList;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
-	public void setPedidoList(List<Pedido> pedidoList) {
-		this.pedidoList = pedidoList;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setProdutoList(List<Produto> produtoList) {
+		this.produtoList = produtoList;
 	}
 
 	@Override
@@ -142,7 +94,7 @@ public class Cliente extends GenericEntity {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Cliente other = (Cliente) obj;
+		Fornecedor other = (Fornecedor) obj;
 
 		if (id == null) {
 			if (other.id != null) {

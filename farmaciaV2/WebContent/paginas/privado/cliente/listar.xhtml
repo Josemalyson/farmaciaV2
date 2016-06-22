@@ -12,8 +12,9 @@
 <h:body>
 	<h:form id="cliente" prependId="false">
 		<h1>Listar Clientes</h1>
-
-		<p:dataTable emptyMessage="Não existe clientes cadastrados."
+		<p:messages />
+		<p:dataTable id="tabelaClientes"
+			emptyMessage="Não existe clientes cadastrados."
 			value="#{clienteControlador.clienteList}" var="cliente">
 
 			<p:column headerText="Nome">
@@ -38,18 +39,22 @@
 			</p:column>
 			<p:column headerText="Açoes">
 				<p:commandButton id="idEditar" icon="ui-icon-pencil" title="Editar"
-					oncomplete="PF('incluirCliente').show();" />
+					oncomplete="PF('incluirCliente').show();"
+					actionListener="#{clienteControlador.setCliente(cliente)}"
+					update="@form" />
 
-				<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir">
-					<p:confirm header="Confirmation" message="Are you sure?"
-						icon="ui-icon-alert" />
+				<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
+					actionListener="#{clienteControlador.excluirCliente(cliente)}"
+					update="@form">
+					<p:confirm header="Confirmar exclusão"
+						message="Deseja realmente excluir?" icon="ui-icon-alert" />
 
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 
-						<p:commandButton value="Yes" type="button"
+						<p:commandButton value="Sim" type="button"
 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 
-						<p:commandButton value="No" type="button"
+						<p:commandButton value="Não" type="button"
 							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 					</p:confirmDialog>
 
@@ -58,13 +63,15 @@
 		</p:dataTable>
 
 		<br></br>
+
 		<p:commandButton value="Novo Cliente"
-			onclick="PF('incluirCliente').show();" />
+			actionListener="#{clienteControlador.novoCliente()}"
+			oncomplete="PF('incluirCliente').show();" update="@form" />
 
-	</h:form>
+		<p:dialog header="Novo Cliente" widgetVar="incluirCliente"
+			id="incluirCliente" modal="true">
 
-	<p:dialog header="Novo Cliente" widgetVar="incluirCliente" modal="true">
-		<h:form id="modalForm" prependId="false">
+			<h:inputHidden value="#{clienteControlador.cliente.id}" />
 
 			<div class="ui-g">
 				<div class="ui-g-1">
@@ -124,13 +131,16 @@
 				<br />
 
 				<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-					title="Salvar" />
+					title="Salvar" actionListener="#{clienteControlador.salvar()}"
+					update="@form" oncomplete="PF('incluirCliente').hide();" />
 
 				<p:commandButton id="idExcluir" value="Cancelar"
-					icon="ui-icon-cancel" title="Cancelar" />
+					icon="ui-icon-cancel" title="Cancelar"
+					onclick="PF('incluirCliente').hide();" />
 
 			</div>
-		</h:form>
-	</p:dialog>
+		</p:dialog>
+	</h:form>
+
 </h:body>
 </html>

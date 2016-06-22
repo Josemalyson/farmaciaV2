@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.farmacia.generics.GenericEntity;
@@ -33,6 +34,12 @@ public class Produto extends GenericEntity {
 
 	@Column(name = "NU_PRECO_CUSTO")
 	private BigDecimal precoCusto;
+
+	@ManyToOne
+	private Fornecedor fornecedor;
+
+	@ManyToOne
+	private Categoria categoria;
 
 	// GETTRS E SETTRS
 
@@ -96,6 +103,22 @@ public class Produto extends GenericEntity {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 }

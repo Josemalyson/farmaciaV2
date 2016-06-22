@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import br.com.farmacia.constantes.MsgConstantes;
 import br.com.farmacia.entidades.Cliente;
 import br.com.farmacia.servicos.ClienteServico;
 
@@ -20,9 +21,29 @@ public class ClienteControlador extends CoreControlador {
 	private Cliente cliente;
 
 	@PostConstruct
-	private void init(){
-		this.clienteList = clienteServico.listar();
+	public void init() {
+		listarCliente();
 		cliente = new Cliente();
+	}
+
+	private void listarCliente() {
+		this.clienteList = clienteServico.listar();
+	}
+
+	public void salvar() {
+		clienteServico.salvar(this.cliente);
+		listarCliente();
+		adicionarMensagem(MsgConstantes.MSG_SUCESSO);
+	}
+
+	public void novoCliente() {
+		this.cliente = new Cliente();
+	}
+
+	public void excluirCliente(Cliente cliente) {
+		clienteServico.excluir(cliente);
+		listarCliente();
+		adicionarMensagem(MsgConstantes.MSG_SUCESSO);
 	}
 
 	public List<Cliente> getClienteList() {

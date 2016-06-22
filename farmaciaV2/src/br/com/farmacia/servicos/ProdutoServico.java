@@ -28,6 +28,13 @@ public class ProdutoServico implements Serializable {
 
 	@Transactional
 	public void excluirProduto(Produto produto) {
+		produtoRepositorio.excluir(produto);
+
+	}
+
+	@Transactional
+	public void salvar(Produto produto) {
+		produtoRepositorio.salvar(produto);
 
 	}
 
