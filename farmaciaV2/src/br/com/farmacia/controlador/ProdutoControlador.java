@@ -59,6 +59,8 @@ public class ProdutoControlador extends CoreControlador {
 	}
 
 	public void salvar() {
+		this.produto.setCategoria(this.categoria);
+		this.produto.setFornecedor(this.fornecedor);
 		produtoServico.salvar(this.produto);
 		listarProduto();
 		adicionarMensagem(MsgConstantes.MSG_SUCESSO);
