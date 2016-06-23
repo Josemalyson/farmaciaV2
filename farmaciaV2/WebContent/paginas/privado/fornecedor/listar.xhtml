@@ -13,6 +13,84 @@
 	<h:form id="fornecedores" prependId="false">
 		<h1>Listar Fornecedores</h1>
 		<p:messages />
+		<p:dataTable id="produtos"
+			emptyMessage="Não existe Fornecedores cadastrados."
+			value="#{fornecedorControlador.fornecedorList}" var="fornecedor">
+
+			<p:column headerText="Nome do fornecedor">
+				<h:outputLabel value="#{fornecedor.nome}" />
+			</p:column>
+
+			<p:column headerText="CNPJ do do fornecedor">
+				<h:outputLabel value="#{fornecedor.cnpj}" />
+			</p:column>
+
+			<p:column headerText="Açoes">
+				<p:commandButton id="idEditar" icon="ui-icon-pencil" title="Editar"
+					oncomplete="PF('incluirFornecedor').show();"
+					actionListener="#{fornecedorControlador.setFornecedor(fornecedor)}"
+					update="@form" />
+
+				<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
+					actionListener="#{fornecedorControlador.excluirFornecedor(fornecedor)}"
+					update="@form">
+					<p:confirm header="Confirmar exclusão"
+						message="Deseja realmente excluir?" icon="ui-icon-alert" />
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+		<br></br>
+
+		<p:commandButton value="Novo Produto"
+			actionListener="#{fornecedorControlador.novoFornecedor()}"
+			oncomplete="PF('incluirFornecedor').show();" update="@form" />
+
+		<p:dialog header="Novo Produto" widgetVar="incluirFornecedor"
+			id="incluirFornecedor" modal="true">
+
+			<h:inputHidden value="#{fornecedorControlador.fornecedor.id}" />
+
+			<div class="ui-g">
+				<div class="ui-g-1">
+					<h:outputLabel value="Nome do fornecedor" />
+				</div>
+				<div class="ui-g-2">
+					<h:inputText value="#{fornecedorControlador.fornecedor.nome}" />
+				</div>
+
+				<br />
+
+				<div class="ui-g-1">
+					<h:outputLabel value="CNPJ do fornecedor" />
+				</div>
+
+				<div class="ui-g-2">
+					<h:inputText value="#{fornecedorControlador.fornecedor.cnpj}" />
+				</div>
+
+				<br />
+
+				<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
+					title="Salvar" actionListener="#{fornecedorControlador.salvar()}"
+					update="@form" oncomplete="PF('incluirFornecedor').hide();" />
+
+				<p:commandButton id="idExcluir" value="Cancelar"
+					icon="ui-icon-cancel" title="Cancelar"
+					onclick="PF('incluirFornecedor').hide();" />
+
+			</div>
+		</p:dialog>
 	</h:form>
 
 </h:body>
