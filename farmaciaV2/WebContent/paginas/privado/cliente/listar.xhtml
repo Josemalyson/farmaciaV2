@@ -1,146 +1,144 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Listar Clientes</title>
-</h:head>
-<h:body>
-	<h:form id="cliente" prependId="false">
-		<h1>Listar Clientes</h1>
-		<p:messages />
-		<p:dataTable id="tabelaClientes"
-			emptyMessage="NÃ£o existe clientes cadastrados."
-			value="#{clienteControlador.clienteList}" var="cliente">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
 
-			<p:column headerText="Nome">
-				<h:outputLabel value="#{cliente.nome}" />
-			</p:column>
-			<p:column headerText="CPF">
-				<h:outputLabel value="#{cliente.cpf}" />
-			</p:column>
-			<p:column headerText="RG">
-				<h:outputLabel value="#{cliente.rg}" />
-			</p:column>
-			<p:column headerText="Email">
-				<h:outputLabel value="#{cliente.email}" />
-			</p:column>
-			<p:column headerText="Telefone">
-				<h:outputLabel value="#{cliente.telefone}" />
-			</p:column>
-			<p:column headerText="Data de nascimento">
-				<h:outputLabel value="#{cliente.dtNascimento}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputLabel>
-			</p:column>
-			<p:column headerText="AÃ§oes">
-				<p:commandButton id="idEditar" icon="ui-icon-pencil" title="Editar"
-					oncomplete="PF('incluirCliente').show();"
-					actionListener="#{clienteControlador.setCliente(cliente)}"
-					update="@form" />
+	<ui:define name="conteudo">
+		<h:form id="cliente" prependId="false">
+			<h1>Listar Clientes</h1>
+			<p:messages />
+			<p:dataTable id="tabelaClientes"
+				emptyMessage="Não existe clientes cadastrados."
+				value="#{clienteControlador.clienteList}" var="cliente">
 
-				<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
-					actionListener="#{clienteControlador.excluirCliente(cliente)}"
-					update="@form">
-					<p:confirm header="Confirmar exclusÃ£o"
-						message="Deseja realmente excluir?" icon="ui-icon-alert" />
+				<p:column headerText="Nome">
+					<h:outputLabel value="#{cliente.nome}" />
+				</p:column>
+				<p:column headerText="CPF">
+					<h:outputLabel value="#{cliente.cpf}" />
+				</p:column>
+				<p:column headerText="RG">
+					<h:outputLabel value="#{cliente.rg}" />
+				</p:column>
+				<p:column headerText="Email">
+					<h:outputLabel value="#{cliente.email}" />
+				</p:column>
+				<p:column headerText="Telefone">
+					<h:outputLabel value="#{cliente.telefone}" />
+				</p:column>
+				<p:column headerText="Data de nascimento">
+					<h:outputLabel value="#{cliente.dtNascimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputLabel>
+				</p:column>
+				<p:column headerText="Açoes">
+					<p:commandButton id="idEditar" icon="ui-icon-pencil" title="Editar"
+						oncomplete="PF('incluirCliente').show();"
+						actionListener="#{clienteControlador.setCliente(cliente)}"
+						update="@form" />
 
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton id="idExcluir" icon="ui-icon-trash"
+						title="Excluir"
+						actionListener="#{clienteControlador.excluirCliente(cliente)}"
+						update="@form">
+						<p:confirm header="Confirmar exclusão"
+							message="Deseja realmente excluir?" icon="ui-icon-alert" />
 
-						<p:commandButton value="Sim" type="button"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 
-						<p:commandButton value="NÃ£o" type="button"
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-					</p:confirmDialog>
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
 
-		<br></br>
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
 
-		<p:commandButton value="Novo Cliente"
-			actionListener="#{clienteControlador.novoCliente()}"
-			oncomplete="PF('incluirCliente').show();" update="@form" />
+			<br></br>
 
-		<p:dialog header="Novo Cliente" widgetVar="incluirCliente"
-			id="incluirCliente" modal="true">
+			<p:commandButton value="Novo Cliente"
+				actionListener="#{clienteControlador.novoCliente()}"
+				oncomplete="PF('incluirCliente').show();" update="@form" />
 
-			<h:inputHidden value="#{clienteControlador.cliente.id}" />
+			<p:dialog header="Novo Cliente" widgetVar="incluirCliente"
+				id="incluirCliente" modal="true">
 
-			<div class="ui-g">
-				<div class="ui-g-1">
-					<h:outputLabel value="Nome" />
+				<h:inputHidden value="#{clienteControlador.cliente.id}" />
+
+				<div class="ui-g">
+					<div class="ui-g-1">
+						<h:outputLabel value="Nome" />
+					</div>
+					<div class="ui-g-2">
+						<h:inputText value="#{clienteControlador.cliente.nome}" />
+					</div>
+
+					<br />
+
+					<div class="ui-g-1">
+						<h:outputLabel value="CPF" />
+					</div>
+
+					<div class="ui-g-2">
+						<h:inputText value="#{clienteControlador.cliente.cpf}" />
+					</div>
+
+					<br />
+
+					<div class="ui-g-1">
+						<h:outputLabel value="RG" />
+					</div>
+					<div class="ui-g-2">
+						<h:inputText value="#{clienteControlador.cliente.rg}" />
+					</div>
+
+					<br />
+
+					<div class="ui-g-1">
+						<h:outputLabel value="Email" />
+					</div>
+					<div class="ui-g-2">
+						<h:inputText value="#{clienteControlador.cliente.email}" />
+					</div>
+
+					<br />
+
+					<div class="ui-g-1">
+						<h:outputLabel value="Telefone" />
+					</div>
+					<div class="ui-g-2">
+						<h:inputText value="#{clienteControlador.cliente.telefone}" />
+					</div>
+
+					<br />
+
+					<div class="ui-g-1">
+						<h:outputLabel value="Data de Nascimento" />
+					</div>
+					<div class="ui-g-2">
+						<p:calendar value="#{clienteControlador.cliente.dtNascimento}"
+							mask="true" />
+					</div>
+
+					<br />
+
+					<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
+						title="Salvar" actionListener="#{clienteControlador.salvar()}"
+						update="@form" oncomplete="PF('incluirCliente').hide();" />
+
+					<p:commandButton id="idExcluir" value="Cancelar"
+						icon="ui-icon-cancel" title="Cancelar"
+						onclick="PF('incluirCliente').hide();" />
+
 				</div>
-				<div class="ui-g-2">
-					<h:inputText value="#{clienteControlador.cliente.nome}" />
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="CPF" />
-				</div>
-
-				<div class="ui-g-2">
-					<h:inputText value="#{clienteControlador.cliente.cpf}" />
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="RG" />
-				</div>
-				<div class="ui-g-2">
-					<h:inputText value="#{clienteControlador.cliente.rg}" />
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="Email" />
-				</div>
-				<div class="ui-g-2">
-					<h:inputText value="#{clienteControlador.cliente.email}" />
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="Telefone" />
-				</div>
-				<div class="ui-g-2">
-					<h:inputText value="#{clienteControlador.cliente.telefone}" />
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="Data de Nascimento" />
-				</div>
-				<div class="ui-g-2">
-					<p:calendar value="#{clienteControlador.cliente.dtNascimento}"
-						mask="true" />
-				</div>
-
-				<br />
-
-				<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-					title="Salvar" actionListener="#{clienteControlador.salvar()}"
-					update="@form" oncomplete="PF('incluirCliente').hide();" />
-
-				<p:commandButton id="idExcluir" value="Cancelar"
-					icon="ui-icon-cancel" title="Cancelar"
-					onclick="PF('incluirCliente').hide();" />
-
-			</div>
-		</p:dialog>
-	</h:form>
-
-</h:body>
-</html>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

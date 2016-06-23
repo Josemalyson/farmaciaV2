@@ -1,152 +1,150 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Listar Produtos</title>
-</h:head>
-<h:body>
-	<h:form id="produto" prependId="false">
-		<h1>Listar Produtos</h1>
-		<p:messages />
-		<p:dataTable id="produtos"
-			emptyMessage="NÃ£o existe Produtos cadastrados."
-			value="#{produtoControlador.produtoList}" var="produto">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
 
-			<p:column headerText="DescriÃ§Ã£o do Produto">
-				<h:outputLabel value="#{produto.descricaoProduto}" />
-			</p:column>
-
-			<p:column headerText="PreÃ§o de custo">
-				<h:outputLabel value="#{produto.precoCusto}" />
-			</p:column>
-
-			<p:column headerText="PreÃ§o de venda">
-				<h:outputLabel value="#{produto.precoVenda}" />
-			</p:column>
-
-			<p:column headerText="Nome do fornecedor">
-				<h:outputLabel value="#{produto.fornecedor.nome}" />
-			</p:column>
-
-			<p:column headerText="Nome da categoria">
-				<h:outputLabel value="#{produto.categoria.nome}" />
-			</p:column>
-
-			<p:column headerText="AÃ§oes">
-				<p:commandButton id="idEditarr" icon="ui-icon-pencil" title="Editar"
-					oncomplete="PF('incluirProduto').show();"
-					actionListener="#{produtoControlador.setProduto(produto)}"
-					update="@form" />
-
-				<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
-					actionListener="#{produtoControlador.excluirProduto(produto)}"
-					update="@form">
-					<p:confirm header="Confirmar exclusÃ£o"
-						message="Deseja realmente excluir?" icon="ui-icon-alert" />
-
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-
-						<p:commandButton value="Sim" type="button"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-
-						<p:commandButton value="NÃ£o" type="button"
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-					</p:confirmDialog>
-
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-
-		<br></br>
-
-		<p:commandButton value="Novo Produto"
-			actionListener="#{produtoControlador.novoProduto()}"
-			oncomplete="PF('incluirProduto').show();" update="@form" />
-
-		<p:dialog header="Novo Produto" widgetVar="incluirProduto"
-			id="incluirProduto" modal="true">
-
-			<h:inputHidden value="#{produtoControlador.produto.id}" />
-
-			<div class="ui-g">
-				<div class="ui-g-1">
-					<h:outputLabel value="DescriÃ§Ã£o do Produto" />
+	<ui:define name="conteudo">
+		<h:form id="produto" prependId="false">
+			<h1>Listar Produtos</h1>
+			<p:messages />
+			<p:dataTable id="produtos"
+				emptyMessage="Não existe Produtos cadastrados."
+				value="#{produtoControlador.produtoList}" var="produto">
+	
+				<p:column headerText="Descrição do Produto">
+					<h:outputLabel value="#{produto.descricaoProduto}" />
+				</p:column>
+	
+				<p:column headerText="Preço de custo">
+					<h:outputLabel value="#{produto.precoCusto}" />
+				</p:column>
+	
+				<p:column headerText="Preço de venda">
+					<h:outputLabel value="#{produto.precoVenda}" />
+				</p:column>
+	
+				<p:column headerText="Nome do fornecedor">
+					<h:outputLabel value="#{produto.fornecedor.nome}" />
+				</p:column>
+	
+				<p:column headerText="Nome da categoria">
+					<h:outputLabel value="#{produto.categoria.nome}" />
+				</p:column>
+	
+				<p:column headerText="Açoes">
+					<p:commandButton id="idEditarr" icon="ui-icon-pencil" title="Editar"
+						oncomplete="PF('incluirProduto').show();"
+						actionListener="#{produtoControlador.setProduto(produto)}"
+						update="@form" />
+	
+					<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
+						actionListener="#{produtoControlador.excluirProduto(produto)}"
+						update="@form">
+						<p:confirm header="Confirmar exclusão"
+							message="Deseja realmente excluir?" icon="ui-icon-alert" />
+	
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+	
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+	
+			<br></br>
+	
+			<p:commandButton value="Novo Produto"
+				actionListener="#{produtoControlador.novoProduto()}"
+				oncomplete="PF('incluirProduto').show();" update="@form" />
+	
+			<p:dialog header="Novo Produto" widgetVar="incluirProduto"
+				id="incluirProduto" modal="true">
+	
+				<h:inputHidden value="#{produtoControlador.produto.id}" />
+	
+				<div class="ui-g">
+					<div class="ui-g-1">
+						<h:outputLabel value="Descrição do Produto" />
+					</div>
+					<div class="ui-g-2">
+						<h:inputText value="#{produtoControlador.produto.descricaoProduto}" />
+					</div>
+	
+					<br />
+	
+					<div class="ui-g-1">
+						<h:outputLabel value="Preço de custo" />
+					</div>
+	
+					<div class="ui-g-2">
+						<h:inputText value="#{produtoControlador.produto.precoCusto}" />
+					</div>
+	
+					<br />
+	
+					<div class="ui-g-1">
+						<h:outputLabel value="Preço de venda" />
+					</div>
+					<div class="ui-g-2">
+						<h:inputText value="#{produtoControlador.produto.precoVenda}" />
+					</div>
+	
+					<br />
+	
+					<div class="ui-g-1">
+						<h:outputLabel value="Selecionar Fornecedor" />
+					</div>
+	
+					<div class="ui-g-2">
+						<p:selectOneMenu id="fornecedor"
+							value="#{produtoControlador.fornecedor}" style="width:125px"
+							converter="genericConverter">
+							<f:selectItem itemLabel="Selecione" />
+							<f:selectItems value="#{produtoControlador.fornecedorList}"
+								var="fornecedor" itemLabel="#{fornecedor.nome}"
+								itemValue="#{fornecedor}" />
+						</p:selectOneMenu>
+					</div>
+	
+					<br />
+	
+					<div class="ui-g-1">
+						<h:outputLabel value="Selecionar Categoria" />
+					</div>
+	
+					<div class="ui-g-2">
+						<p:selectOneMenu id="categoria"
+							value="#{produtoControlador.categoria}" style="width:125px"
+							converter="genericConverter">
+							<f:selectItem itemLabel="Selecione" />
+							<f:selectItems value="#{produtoControlador.categoriaList}"
+								var="categoria" itemLabel="#{categoria.nome}"
+								itemValue="#{categoria}" />
+						</p:selectOneMenu>
+					</div>
+	
+					<br />
+	
+					<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
+						title="Salvar" actionListener="#{produtoControlador.salvar()}"
+						update="@form" oncomplete="PF('incluirProduto').hide();" />
+	
+					<p:commandButton id="idExcluir" value="Cancelar"
+						icon="ui-icon-cancel" title="Cancelar"
+						onclick="PF('incluirProduto').hide();" />
+	
 				</div>
-				<div class="ui-g-2">
-					<h:inputText value="#{produtoControlador.produto.descricaoProduto}" />
-				</div>
+			</p:dialog>
+		</h:form>
 
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="PreÃ§o de custo" />
-				</div>
-
-				<div class="ui-g-2">
-					<h:inputText value="#{produtoControlador.produto.precoCusto}" />
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="PreÃ§o de venda" />
-				</div>
-				<div class="ui-g-2">
-					<h:inputText value="#{produtoControlador.produto.precoVenda}" />
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="Selecionar Fornecedor" />
-				</div>
-
-				<div class="ui-g-2">
-					<p:selectOneMenu id="fornecedor"
-						value="#{produtoControlador.fornecedor}" style="width:125px"
-						converter="genericConverter">
-						<f:selectItem itemLabel="Selecione" />
-						<f:selectItems value="#{produtoControlador.fornecedorList}"
-							var="fornecedor" itemLabel="#{fornecedor.nome}"
-							itemValue="#{fornecedor}" />
-					</p:selectOneMenu>
-				</div>
-
-				<br />
-
-				<div class="ui-g-1">
-					<h:outputLabel value="Selecionar Categoria" />
-				</div>
-
-				<div class="ui-g-2">
-					<p:selectOneMenu id="categoria"
-						value="#{produtoControlador.categoria}" style="width:125px"
-						converter="genericConverter">
-						<f:selectItem itemLabel="Selecione" />
-						<f:selectItems value="#{produtoControlador.categoriaList}"
-							var="categoria" itemLabel="#{categoria.nome}"
-							itemValue="#{categoria}" />
-					</p:selectOneMenu>
-				</div>
-
-				<br />
-
-				<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-					title="Salvar" actionListener="#{produtoControlador.salvar()}"
-					update="@form" oncomplete="PF('incluirProduto').hide();" />
-
-				<p:commandButton id="idExcluir" value="Cancelar"
-					icon="ui-icon-cancel" title="Cancelar"
-					onclick="PF('incluirProduto').hide();" />
-
-			</div>
-		</p:dialog>
-	</h:form>
-
-</h:body>
-</html>
+	</ui:define>
+</ui:composition>

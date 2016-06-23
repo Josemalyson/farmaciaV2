@@ -1,83 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Listar Categoria</title>
-</h:head>
-<h:body>
-	<h:form id="categoria" prependId="false">
-		<h1>Listar Categoria</h1>
-		<p:messages />
-		<p:dataTable id="categoriaTabela"
-			emptyMessage="NÃ£o existe Categoria cadastrados."
-			value="#{categoriaControlador.categoriaList}" var="categoria">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
 
-			<p:column headerText="DescriÃ§Ã£o da Categoria">
-				<h:outputLabel value="#{categoria.nome}" />
-			</p:column>
-
-			<p:column headerText="AÃ§oes">
-				<p:commandButton id="idEditar" icon="ui-icon-pencil" title="Editar"
-					oncomplete="PF('incluirCategoria').show();"
-					actionListener="#{categoriaControlador.setCategoria(categoria)}"
-					update="@form" />
-
-				<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
-					actionListener="#{categoriaControlador.excluirCategoria(categoria)}"
-					update="@form">
-					<p:confirm header="Confirmar exclusÃ£o"
-						message="Deseja realmente excluir?" icon="ui-icon-alert" />
-
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-
-						<p:commandButton value="Sim" type="button"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-
-						<p:commandButton value="NÃ£o" type="button"
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-					</p:confirmDialog>
-
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-
-		<br></br>
-
-		<p:commandButton value="Nova Categoria"
-			actionListener="#{categoriaControlador.novaCategoria()}"
-			oncomplete="PF('incluirCategoria').show();" update="@form" />
-
-		<p:dialog header="Nova Categoria" widgetVar="incluirCategoria"
-			id="incluirCategoria" modal="true">
-
-			<h:inputHidden value="#{categoriaControlador.categoria.id}" />
-
-			<div class="ui-g">
-				<div class="ui-g-1">
-					<h:outputLabel value="DescriÃ§Ã£o da Categoria" />
+	<ui:define name="conteudo">
+		<h:form id="categoria" prependId="false">
+			<h1>Listar Categoria</h1>
+			<p:messages />
+			<p:dataTable id="categoriaTabela"
+				emptyMessage="Não existe categoria cadastrada."
+				value="#{categoriaControlador.categoriaList}" var="categoria">
+	
+				<p:column headerText="Descrição da Categoria" width="90%">
+					<h:outputLabel value="#{categoria.nome}" />
+				</p:column>
+	
+				<p:column headerText="Açoes">
+					<p:commandButton id="idEditar" icon="ui-icon-pencil" title="Editar"
+						oncomplete="PF('incluirCategoria').show();"
+						actionListener="#{categoriaControlador.setCategoria(categoria)}"
+						update="@form" />
+	
+					<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
+						actionListener="#{categoriaControlador.excluirCategoria(categoria)}"
+						update="@form">
+						<p:confirm header="Confirmar exclusão"
+							message="Deseja realmente excluir?" icon="ui-icon-alert" />
+	
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+	
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+	
+			<br></br>
+	
+			<p:commandButton value="Nova Categoria"
+				actionListener="#{categoriaControlador.novaCategoria()}"
+				oncomplete="PF('incluirCategoria').show();" update="@form" />
+	
+			<p:dialog header="Nova Categoria" widgetVar="incluirCategoria"
+				id="incluirCategoria" modal="true">
+	
+				<h:inputHidden value="#{categoriaControlador.categoria.id}" />
+	
+				<div class="ui-g">
+					<div class="ui-g-1">
+						<h:outputLabel value="Descrição da Categoria" />
+					</div>
+					<div class="ui-g-2">
+						<h:inputText value="#{categoriaControlador.categoria.nome}" />
+					</div>
+	
+					<br />
+	
+					<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
+						title="Salvar" actionListener="#{categoriaControlador.salvar()}"
+						update="@form" oncomplete="PF('incluirCategoria').hide();" />
+	
+					<p:commandButton id="idExcluir" value="Cancelar"
+						icon="ui-icon-cancel" title="Cancelar"
+						onclick="PF('incluirCategoria').hide();" />
+	
 				</div>
-				<div class="ui-g-2">
-					<h:inputText value="#{categoriaControlador.categoria.nome}" />
-				</div>
-
-				<br />
-
-				<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-					title="Salvar" actionListener="#{categoriaControlador.salvar()}"
-					update="@form" oncomplete="PF('incluirCategoria').hide();" />
-
-				<p:commandButton id="idExcluir" value="Cancelar"
-					icon="ui-icon-cancel" title="Cancelar"
-					onclick="PF('incluirCategoria').hide();" />
-
-			</div>
-		</p:dialog>
-	</h:form>
-
-</h:body>
-</html>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

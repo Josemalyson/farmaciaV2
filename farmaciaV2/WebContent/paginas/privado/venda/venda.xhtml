@@ -1,150 +1,147 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Efetuar Venda</title>
-</h:head>
-<h:body>
-	<h:form id="compra" prependId="false">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
 
-		<h1>Efetuar Venda</h1>
-
-		<p:messages />
-
-		<p:fieldset legend="Adicionar Produto">
-			<div class="ui-g">
-				<div class="ui-g-8">
-					<p:outputLabel value="Pesquisar produtos: " for="dd" />
-					<p:autoComplete id="dd" dropdown="true"
-						value="#{autoCompleteView.txt6}"
-						completeMethod="#{autoCompleteView.completeText}" />
+	<ui:define name="conteudo">
+		<h:form id="compra" prependId="false">
+	
+			<h1>Efetuar Venda</h1>
+	
+			<p:messages />
+	
+			<p:fieldset legend="Adicionar Produto">
+				<div class="ui-g">
+					<div class="ui-g-8">
+						<p:outputLabel value="Pesquisar produtos: " for="dd" />
+						<p:autoComplete id="dd" dropdown="true"
+							value="#{autoCompleteView.txt6}"
+							completeMethod="#{autoCompleteView.completeText}" />
+					</div>
+					<br />
+					<div class="ui-g-4">
+						<p:outputLabel value="Data do pedido: " />
+						<p:outputLabel value="11/11/2016" />
+					</div>
 				</div>
-				<br />
-				<div class="ui-g-4">
-					<p:outputLabel value="Data do pedido: " />
-					<p:outputLabel value="11/11/2016" />
+			</p:fieldset>
+	
+			<br />
+	
+			<p:fieldset legend="Adicionar Cliente">
+				<div class="ui-g">
+					<div class="ui-g-2">
+						<p:outputLabel value="Pesquisar Cliente:  " for="cc" />
+						<p:autoComplete id="cc" dropdown="true"
+							value="#{autoCompleteView.txt6}"
+							completeMethod="#{autoCompleteView.completeText}" />
+					</div>
+	
+					<br />
+	
+					<div class="ui-g-3">
+						<p:outputLabel value="Nome do CLiente: " />
+						<p:outputLabel value="Jose" />
+					</div>
 				</div>
-			</div>
-		</p:fieldset>
-
-		<br />
-
-		<p:fieldset legend="Adicionar Cliente">
-			<div class="ui-g">
-				<div class="ui-g-2">
-					<p:outputLabel value="Pesquisar Cliente:  " for="cc" />
-					<p:autoComplete id="cc" dropdown="true"
-						value="#{autoCompleteView.txt6}"
-						completeMethod="#{autoCompleteView.completeText}" />
+			</p:fieldset>
+	
+			<br></br>
+	
+			<p:fieldset legend="Listas de produtos">
+				<p:dataTable id="produtos" editable="true"
+					emptyMessage="Não existe Produtos cadastrados."
+					value="#{produtoControlador.produtoList}" var="produto">
+	
+					<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
+						update="@form" />
+	
+					<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
+						update="@form" />
+	
+					<p:column headerText="Quantidade">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{car.id}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="quantidade" value="#{car.id}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+	
+	
+					<p:column headerText="Descrição do Produto">
+						<h:outputLabel value="#{produto.descricaoProduto}" />
+					</p:column>
+	
+					<p:column headerText="Preço de custo">
+						<h:outputLabel value="#{produto.precoCusto}" />
+					</p:column>
+	
+					<p:column headerText="Preço de venda">
+						<h:outputLabel value="#{produto.precoVenda}" />
+					</p:column>
+	
+	
+					<p:column headerText="Ações">
+						<p:rowEditor />
+						<p:commandButton id="idExcluir" icon="ui-icon-trash"
+							title="Excluir"
+							actionListener="#{produtoControlador.excluirProduto(produto)}"
+							update="@form">
+							<p:confirm header="Confirmar exclusão"
+								message="Deseja realmente excluir?" icon="ui-icon-alert" />
+	
+							<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	
+								<p:commandButton value="Sim" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:commandButton>
+					</p:column>
+	
+	
+				</p:dataTable>
+			</p:fieldset>
+	
+			<br />
+	
+			<p:fieldset legend="Total da venda">
+				<div class="ui-g">
+					<div class="ui-g-4">
+						<p:outputLabel value="Valor total da compra R$: " />
+						<p:outputLabel value="1200.00 " />
+					</div>
+					<div class="ui-g-4">
+						<p:outputLabel value="Valor do desconto R$: " />
+						<p:outputLabel value="1200.00 " />
+					</div>
+					<div class="ui-g-4">
+						<p:outputLabel value="Valor total da venda R$: " />
+						<p:outputLabel value="1200.00 " />
+					</div>
 				</div>
-
-				<br />
-
-				<div class="ui-g-3">
-					<p:outputLabel value="Nome do CLiente: " />
-					<p:outputLabel value="Jose" />
-				</div>
-			</div>
-		</p:fieldset>
-
-		<br></br>
-
-		<p:fieldset legend="Listas de produtos">
-			<p:dataTable id="produtos" editable="true"
-				emptyMessage="NÃ£o existe Produtos cadastrados."
-				value="#{produtoControlador.produtoList}" var="produto">
-
-				<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
-					update="@form" />
-
-				<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
-					update="@form" />
-
-				<p:column headerText="Quantidade">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText id="quantidade" value="#{car.id}" style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
-
-				<p:column headerText="DescriÃ§Ã£o do Produto">
-					<h:outputLabel value="#{produto.descricaoProduto}" />
-				</p:column>
-
-				<p:column headerText="PreÃ§o de custo">
-					<h:outputLabel value="#{produto.precoCusto}" />
-				</p:column>
-
-				<p:column headerText="PreÃ§o de venda">
-					<h:outputLabel value="#{produto.precoVenda}" />
-				</p:column>
-
-
-				<p:column headerText="AÃ§Ãµes">
-					<p:rowEditor />
-					<p:commandButton id="idExcluir" icon="ui-icon-trash"
-						title="Excluir"
-						actionListener="#{produtoControlador.excluirProduto(produto)}"
-						update="@form">
-						<p:confirm header="Confirmar exclusÃ£o"
-							message="Deseja realmente excluir?" icon="ui-icon-alert" />
-
-						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-
-							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-
-							<p:commandButton value="NÃ£o" type="button"
-								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-						</p:confirmDialog>
-					</p:commandButton>
-				</p:column>
-
-
-			</p:dataTable>
-		</p:fieldset>
-
-		<br />
-
-		<p:fieldset legend="Total da venda">
-			<div class="ui-g">
-				<div class="ui-g-4">
-					<p:outputLabel value="Valor total da compra R$: " />
-					<p:outputLabel value="1200.00 " />
-				</div>
-				<div class="ui-g-4">
-					<p:outputLabel value="Valor do desconto R$: " />
-					<p:outputLabel value="1200.00 " />
-				</div>
-				<div class="ui-g-4">
-					<p:outputLabel value="Valor total da venda R$: " />
-					<p:outputLabel value="1200.00 " />
-				</div>
-			</div>
-		</p:fieldset>
-
-		<br />
-
-		<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-			title="Salvar" actionListener="#{clienteControlador.salvar()}"
-			update="@form" oncomplete="PF('incluirCliente').hide();" />
-
-		<p:commandButton id="idCacelar" value="Cancelar" icon="ui-icon-cancel"
-			title="Cancelar" onclick="PF('incluirCliente').hide();" />
-
-		<br />
-
-	</h:form>
-
-</h:body>
-</html>
+			</p:fieldset>
+	
+			<br />
+	
+			<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
+				title="Salvar" actionListener="#{clienteControlador.salvar()}"
+				update="@form" oncomplete="PF('incluirCliente').hide();" />
+	
+			<p:commandButton id="idCacelar" value="Cancelar" icon="ui-icon-cancel"
+				title="Cancelar" onclick="PF('incluirCliente').hide();" />
+	
+			<br />
+	
+		</h:form>
+	</ui:define>
+</ui:composition>
