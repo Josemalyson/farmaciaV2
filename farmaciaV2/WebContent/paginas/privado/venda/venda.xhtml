@@ -18,20 +18,34 @@
 
 		<p:fieldset legend="Adicionar Produo">
 			<div class="ui-g">
-				<div class="ui-g-8 ui-g-nopad">
-					<div class="ui-g-2">
-						<p:outputLabel value="Pesquisar produtos: " for="dd" />
-						<p:autoComplete id="dd" dropdown="true"
-							value="#{autoCompleteView.txt6}"
-							completeMethod="#{autoCompleteView.completeText}" />
-					</div>
+				<div class="ui-g-6">
+					<p:outputLabel value="Pesquisar produtos: " for="dd" />
+					<p:autoComplete id="dd" dropdown="true"
+						value="#{autoCompleteView.txt6}"
+						completeMethod="#{autoCompleteView.completeText}" />
+				</div>
 
-					<br />
+				<br />
 
-					<div class="ui-g-2">
-						<p:outputLabel value="Data do pedido: " />
-						<p:outputLabel value="11/11/2016" />
-					</div>
+				<div class="ui-g-3">
+					<p:outputLabel value="Data do pedido: " />
+				</div>
+				<div class="ui-g-3">
+					<p:outputLabel value="11/11/2016" />
+
+				</div>
+			</div>
+		</p:fieldset>
+
+		<br />
+
+		<p:fieldset legend="Adicionar Cliente">
+			<div class="ui-g">
+				<div class="ui-g-2">
+					<p:outputLabel value="Pesquisar Cliente:  " for="cc" />
+					<p:autoComplete id="cc" dropdown="true"
+						value="#{autoCompleteView.txt6}"
+						completeMethod="#{autoCompleteView.completeText}" />
 				</div>
 			</div>
 		</p:fieldset>
@@ -39,9 +53,27 @@
 		<br></br>
 
 		<p:fieldset legend="Listas de produtos">
-			<p:dataTable id="produtos"
+			<p:dataTable id="produtos" editable="true"
 				emptyMessage="Não existe Produtos cadastrados."
 				value="#{produtoControlador.produtoList}" var="produto">
+
+				<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
+					update="@form" />
+
+				<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
+					update="@form" />
+
+				<p:column headerText="Quantidade">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{car.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="quantidade" value="#{car.id}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
 
 				<p:column headerText="Descrição do Produto">
 					<h:outputLabel value="#{produto.descricaoProduto}" />
@@ -55,20 +87,9 @@
 					<h:outputLabel value="#{produto.precoVenda}" />
 				</p:column>
 
-				<p:column headerText="Nome do fornecedor">
-					<h:outputLabel value="#{produto.fornecedor.nome}" />
-				</p:column>
 
-				<p:column headerText="Nome da categoria">
-					<h:outputLabel value="#{produto.categoria.nome}" />
-				</p:column>
-
-				<p:column headerText="Açoes">
-					<p:commandButton id="idEditarr" icon="ui-icon-pencil"
-						title="Editar" oncomplete="PF('incluirProduto').show();"
-						actionListener="#{produtoControlador.setProduto(produto)}"
-						update="@form" />
-
+				<p:column headerText="Editar">
+					<p:rowEditor />
 					<p:commandButton id="idExcluir" icon="ui-icon-trash"
 						title="Excluir"
 						actionListener="#{produtoControlador.excluirProduto(produto)}"
@@ -84,18 +105,32 @@
 							<p:commandButton value="Não" type="button"
 								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 						</p:confirmDialog>
-
 					</p:commandButton>
 				</p:column>
+
+
 			</p:dataTable>
 		</p:fieldset>
 
 		<br />
-		
-		<p:fieldset legend="Total do pedido">
-			<p:outputLabel value="R$: " />
+
+		<p:fieldset legend="Total da venda">
+			<div class="ui-g">
+				<div class="ui-g-4">
+					<p:outputLabel value="Valor total da compra R$: " />
+					<p:outputLabel value="1200.00 " />
+				</div>
+				<div class="ui-g-4">
+					<p:outputLabel value="Valor do desconto R$: " />
+					<p:outputLabel value="1200.00 " />
+				</div>
+				<div class="ui-g-4">
+					<p:outputLabel value="Valor total da venda R$: " />
+					<p:outputLabel value="1200.00 " />
+				</div>
+			</div>
 		</p:fieldset>
-		
+
 		<br />
 
 		<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
@@ -104,6 +139,8 @@
 
 		<p:commandButton id="idCacelar" value="Cancelar" icon="ui-icon-cancel"
 			title="Cancelar" onclick="PF('incluirCliente').hide();" />
+
+		<br />
 
 	</h:form>
 

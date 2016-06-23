@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="ISO-8859-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Musa Acessorios</title>
+
+</h:head>
+<h:body>
+	<link rel="stylesheet"
+		href="#{request.contextPath}/recursos/bootstrap/css/meuEstilo.css"
+		type="text/css" media="all" />
+	<!-- BOOTSRAP -->
+	<link rel="stylesheet"
+		href="#{request.contextPath}/recursos/bootstrap/css/bootstrap.css"
+		type="text/css" media="all" />
+	<link rel="stylesheet"
+		href="#{request.contextPath}/recursos/bootstrap/css/bootstrap-theme.css"
+		type="text/css" media="all" />
+	<div id="topo">
+		<ui:insert name="topo">
+			<ui:include src="/WEB-INF/template/topo.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+	<div>
+		<p:outputPanel id="panel" autoUpdate="true">
+			<p:dialog id="dialogo" widgetVar="dialogo" dynamic="false"
+				maximizable="false" resizable="false" hideEffect="fade"
+				showEffect="fade" modal="true" height="70" width="505"
+				position="center" minimizable="false" draggable="false"
+				rendered="#{not empty facesContext.messageList}" visible="true">
+				<p:messages id="mensagem" globalOnly="false" escape="false" />
+			</p:dialog>
+		</p:outputPanel>
+	</div>
+	<div id="conteudo">
+		<ui:insert name="conteudo">
+			<ui:include src="/WEB-INF/template/conteudo.xhtml" />
+		</ui:insert>
+	</div>
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage value="/imagens/ajax-loader-circule.gif" />
+	</p:dialog>
+
+</h:body>
+<script type="text/javascript"
+	src="#{request.contextPath}/recursos/js/meujs.js"></script>
+<script type="text/javascript"
+	src="#{request.contextPath}/recursos/bootstrap/js/bootstrap.js"></script>
+</html>
