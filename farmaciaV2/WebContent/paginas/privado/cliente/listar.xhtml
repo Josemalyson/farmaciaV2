@@ -68,67 +68,57 @@
 				oncomplete="PF('incluirCliente').show();" update="@form" />
 
 			<p:dialog header="Novo Cliente" widgetVar="incluirCliente"
-				id="incluirCliente" modal="true">
+				id="incluirCliente" width="500px" modal="true" draggable="false" resizable="false">
 
 				<h:inputHidden value="#{clienteControlador.cliente.id}" />
-
-				<div class="ui-g">
-					<div class="ui-g-1">
-						<h:outputLabel value="Nome" />
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-12">
+							<h:outputLabel value="Nome" />
+							<p:inputText styleClass="width-full" value="#{clienteControlador.cliente.nome}" />
+						</div>
 					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{clienteControlador.cliente.nome}" />
+				</div>
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-6">
+							<h:outputLabel value="CPF" />
+							<p:inputMask mask="999.999.999-99" styleClass="width-full" value="#{clienteControlador.cliente.cpf}" />
+						</div>
+						<div class="col-xs-6">
+							<h:outputLabel value="RG" />
+							<p:inputText styleClass="width-full" value="#{clienteControlador.cliente.rg}" />
+						</div>
 					</div>
-
-					<br />
-
-					<div class="ui-g-1">
-						<h:outputLabel value="CPF" />
+				</div>
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-12">
+							<h:outputLabel value="Email" />
+							<p:inputText styleClass="width-full" value="#{clienteControlador.cliente.email}" />
+						</div>
 					</div>
-
-					<div class="ui-g-2">
-						<h:inputText value="#{clienteControlador.cliente.cpf}" />
+				</div>
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-6">
+							<h:outputLabel value="Telefone" />
+							<p:inputText styleClass="width-full" value="#{clienteControlador.cliente.telefone}" />
+						</div>
+						<div class="col-xs-6">
+							<h:outputLabel value="Data de Nascimento" />
+							<p:calendar value="#{clienteControlador.cliente.dtNascimento}"
+								mask="true" />
+						</div>
 					</div>
-
-					<br />
-
-					<div class="ui-g-1">
-						<h:outputLabel value="RG" />
-					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{clienteControlador.cliente.rg}" />
-					</div>
-
-					<br />
-
-					<div class="ui-g-1">
-						<h:outputLabel value="Email" />
-					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{clienteControlador.cliente.email}" />
-					</div>
-
-					<br />
-
-					<div class="ui-g-1">
-						<h:outputLabel value="Telefone" />
-					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{clienteControlador.cliente.telefone}" />
-					</div>
-
-					<br />
-
-					<div class="ui-g-1">
-						<h:outputLabel value="Data de Nascimento" />
-					</div>
-					<div class="ui-g-2">
-						<p:calendar value="#{clienteControlador.cliente.dtNascimento}"
-							mask="true" />
-					</div>
-
-					<br />
-
+				</div>
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-12">
 					<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
 						title="Salvar" actionListener="#{clienteControlador.salvar()}"
 						update="@form" oncomplete="PF('incluirCliente').hide();" />
@@ -136,7 +126,8 @@
 					<p:commandButton id="idExcluir" value="Cancelar"
 						icon="ui-icon-cancel" title="Cancelar"
 						onclick="PF('incluirCliente').hide();" />
-
+						</div>
+					</div>
 				</div>
 			</p:dialog>
 		</h:form>

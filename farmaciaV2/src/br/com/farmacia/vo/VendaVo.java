@@ -1,14 +1,17 @@
 package br.com.farmacia.vo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import br.com.farmacia.entidades.Cliente;
 import br.com.farmacia.entidades.Produto;
 
-public class VendaVo {
+public class VendaVo implements Serializable {
 
+	private static final long serialVersionUID = 1049660646230327825L;
+	
 	public Produto produto;
 	public Cliente cliente;
 	public Date dtPedido;

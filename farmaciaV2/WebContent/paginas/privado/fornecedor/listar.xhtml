@@ -50,35 +50,34 @@
 	
 			<br></br>
 	
-			<p:commandButton value="Novo Produto"
+			<p:commandButton value="Novo Fornecedor"
 				actionListener="#{fornecedorControlador.novoFornecedor()}"
 				oncomplete="PF('incluirFornecedor').show();" update="@form" />
 	
-			<p:dialog header="Novo Produto" widgetVar="incluirFornecedor"
-				id="incluirFornecedor" modal="true">
+			<p:dialog header="Novo Fornecedor" widgetVar="incluirFornecedor"
+				id="incluirFornecedor"  width="350px" modal="true" draggable="false" resizable="false">
 	
 				<h:inputHidden value="#{fornecedorControlador.fornecedor.id}" />
-	
-				<div class="ui-g">
-					<div class="ui-g-1">
+				<div class="row form-group">
+					<div class="col-xs-12">
 						<h:outputLabel value="Nome do fornecedor" />
 					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{fornecedorControlador.fornecedor.nome}" />
+					<div class="col-xs-12">
+						<h:inputText styleClass="width-full" value="#{fornecedorControlador.fornecedor.nome}" />
 					</div>
+				</div>
 	
-					<br />
-	
-					<div class="ui-g-1">
+				<div class="row form-group">
+					<div class="col-xs-12">
 						<h:outputLabel value="CNPJ do fornecedor" />
 					</div>
-	
-					<div class="ui-g-2">
-						<h:inputText value="#{fornecedorControlador.fornecedor.cnpj}" />
+					<div class="col-xs-12">
+						<h:inputText styleClass="width-full" value="#{fornecedorControlador.fornecedor.cnpj}" />
 					</div>
+				</div>
 	
-					<br />
-	
+				<div class="row form-group">
+					<div class="col-xs-12">
 					<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
 						title="Salvar" actionListener="#{fornecedorControlador.salvar()}"
 						update="@form" oncomplete="PF('incluirFornecedor').hide();" />
@@ -86,7 +85,7 @@
 					<p:commandButton id="idExcluir" value="Cancelar"
 						icon="ui-icon-cancel" title="Cancelar"
 						onclick="PF('incluirFornecedor').hide();" />
-	
+					</div>
 				</div>
 			</p:dialog>
 		</h:form>

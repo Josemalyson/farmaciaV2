@@ -72,6 +72,14 @@ h2 {
 	margin-top: 15px;
 }
 
+.width-full {
+	width: 100%;
+}
+
+.hasDatepicker {
+	width: 100%;
+}
+
 #botaoLimparValorPago{
 	margin-left: -52px;
 	margin-top: -3px;

@@ -51,28 +51,28 @@
 				oncomplete="PF('incluirCategoria').show();" update="@form" />
 	
 			<p:dialog header="Nova Categoria" widgetVar="incluirCategoria"
-				id="incluirCategoria" modal="true">
+				id="incluirCategoria" width="350px" modal="true" draggable="false" resizable="false">
 	
 				<h:inputHidden value="#{categoriaControlador.categoria.id}" />
-	
-				<div class="ui-g">
-					<div class="ui-g-1">
+				
+				<div class="row form-group">
+					<div class="col-xs-12">
 						<h:outputLabel value="Descrição da Categoria" />
 					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{categoriaControlador.categoria.nome}" />
+					<div class="col-xs-12">
+						<p:inputText styleClass="width-full" value="#{categoriaControlador.categoria.nome}" />
 					</div>
+				</div>
 	
-					<br />
-	
-					<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-						title="Salvar" actionListener="#{categoriaControlador.salvar()}"
-						update="@form" oncomplete="PF('incluirCategoria').hide();" />
-	
-					<p:commandButton id="idExcluir" value="Cancelar"
-						icon="ui-icon-cancel" title="Cancelar"
-						onclick="PF('incluirCategoria').hide();" />
-	
+				<div class="row form-group">
+					<div class="col-xs-12">
+						<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
+							title="Salvar" actionListener="#{categoriaControlador.salvar()}"
+							update="@form" oncomplete="PF('incluirCategoria').hide();" />
+						<p:commandButton id="idExcluir" value="Cancelar"
+							icon="ui-icon-cancel" title="Cancelar"
+							onclick="PF('incluirCategoria').hide();" />
+					</div>
 				</div>
 			</p:dialog>
 		</h:form>

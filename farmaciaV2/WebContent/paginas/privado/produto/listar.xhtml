@@ -9,142 +9,145 @@
 
 	<ui:define name="conteudo">
 		<h:form id="produto" prependId="false">
-			<h1>Listar Produtos</h1>
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>Listar Produtos</h1>
+				</div>
+			</div>
 			<p:messages />
-			<p:dataTable id="produtos"
-				emptyMessage="Não existe Produtos cadastrados."
-				value="#{produtoControlador.produtoList}" var="produto">
-	
-				<p:column headerText="Descrição do Produto">
-					<h:outputLabel value="#{produto.descricaoProduto}" />
-				</p:column>
-	
-				<p:column headerText="Preço de custo">
-					<h:outputLabel value="#{produto.precoCusto}" />
-				</p:column>
-	
-				<p:column headerText="Preço de venda">
-					<h:outputLabel value="#{produto.precoVenda}" />
-				</p:column>
-	
-				<p:column headerText="Nome do fornecedor">
-					<h:outputLabel value="#{produto.fornecedor.nome}" />
-				</p:column>
-	
-				<p:column headerText="Nome da categoria">
-					<h:outputLabel value="#{produto.categoria.nome}" />
-				</p:column>
-	
-				<p:column headerText="Açoes">
-					<p:commandButton id="idEditarr" icon="ui-icon-pencil" title="Editar"
-						oncomplete="PF('incluirProduto').show();"
-						actionListener="#{produtoControlador.setProduto(produto)}"
-						update="@form" />
-	
-					<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
-						actionListener="#{produtoControlador.excluirProduto(produto)}"
-						update="@form">
-						<p:confirm header="Confirmar exclusão"
-							message="Deseja realmente excluir?" icon="ui-icon-alert" />
-	
-						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-	
-							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	
-							<p:commandButton value="Não" type="button"
-								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-						</p:confirmDialog>
-	
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
-	
-			<br></br>
-	
-			<p:commandButton value="Novo Produto"
-				actionListener="#{produtoControlador.novoProduto()}"
-				oncomplete="PF('incluirProduto').show();" update="@form" />
-	
+			<div class="row">
+				<div class="col-xs-12">
+					<p:dataTable id="produtos"
+						emptyMessage="Não existe Produtos cadastrados."
+						value="#{produtoControlador.produtoList}" var="produto">
+			
+						<p:column headerText="Descrição do Produto">
+							<h:outputLabel value="#{produto.descricaoProduto}" />
+						</p:column>
+			
+						<p:column headerText="Preço de custo">
+							<h:outputLabel value="#{produto.precoCusto}" />
+						</p:column>
+			
+						<p:column headerText="Preço de venda">
+							<h:outputLabel value="#{produto.precoVenda}" />
+						</p:column>
+			
+						<p:column headerText="Nome do fornecedor">
+							<h:outputLabel value="#{produto.fornecedor.nome}" />
+						</p:column>
+			
+						<p:column headerText="Nome da categoria">
+							<h:outputLabel value="#{produto.categoria.nome}" />
+						</p:column>
+			
+						<p:column headerText="Açoes">
+							<p:commandButton id="idEditarr" icon="ui-icon-pencil" title="Editar"
+								oncomplete="PF('incluirProduto').show();"
+								actionListener="#{produtoControlador.setProduto(produto)}"
+								update="@form" />
+			
+							<p:commandButton id="idExcluir" icon="ui-icon-trash" title="Excluir"
+								actionListener="#{produtoControlador.excluirProduto(produto)}"
+								update="@form">
+								<p:confirm header="Confirmar exclusão"
+									message="Deseja realmente excluir?" icon="ui-icon-alert" />
+			
+								<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			
+									<p:commandButton value="Sim" type="button"
+										styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			
+									<p:commandButton value="Não" type="button"
+										styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								</p:confirmDialog>
+			
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-12">
+					<p:commandButton value="Novo Produto"
+						actionListener="#{produtoControlador.novoProduto()}"
+						oncomplete="PF('incluirProduto').show();" update="@form" />
+				</div>
+			</div>
+			<br/>
 			<p:dialog header="Novo Produto" widgetVar="incluirProduto"
-				id="incluirProduto" modal="true">
+				id="incluirProduto" width="500px" modal="true" draggable="false" resizable="false">
 	
 				<h:inputHidden value="#{produtoControlador.produto.id}" />
-	
-				<div class="ui-g">
-					<div class="ui-g-1">
-						<h:outputLabel value="Descrição do Produto" />
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-12">
+							<h:outputLabel value="Descrição do Produto" />
+							<p:inputText styleClass="width-full" value="#{produtoControlador.produto.descricaoProduto}" />
+						</div>
 					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{produtoControlador.produto.descricaoProduto}" />
+				</div>
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-6">
+							<h:outputLabel value="Preço de custo" />
+							<p:inputText styleClass="width-full" value="#{produtoControlador.produto.precoCusto}" />
+						</div>
+						<div class="col-xs-6">
+							<h:outputLabel value="Preço de venda" />
+							<p:inputText styleClass="width-full" value="#{produtoControlador.produto.precoVenda}" />
+						</div>
 					</div>
+				</div>
 	
-					<br />
-	
-					<div class="ui-g-1">
-						<h:outputLabel value="Preço de custo" />
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-12">
+							<h:outputLabel value="Selecionar Fornecedor" />
+						</div>
+						<div class="col-xs-8">
+							<p:selectOneMenu id="fornecedor"
+								value="#{produtoControlador.fornecedor}" styleClass="width-full"
+								converter="genericConverter">
+								<f:selectItem itemLabel="Selecione" />
+								<f:selectItems value="#{produtoControlador.fornecedorList}"
+									var="fornecedor" itemLabel="#{fornecedor.nome}"
+									itemValue="#{fornecedor}" />
+							</p:selectOneMenu>
+						</div>
 					</div>
+				</div>
 	
-					<div class="ui-g-2">
-						<h:inputText value="#{produtoControlador.produto.precoCusto}" />
-					</div>
-	
-					<br />
-	
-					<div class="ui-g-1">
-						<h:outputLabel value="Preço de venda" />
-					</div>
-					<div class="ui-g-2">
-						<h:inputText value="#{produtoControlador.produto.precoVenda}" />
-					</div>
-	
-					<br />
-	
-					<div class="ui-g-1">
-						<h:outputLabel value="Selecionar Fornecedor" />
-					</div>
-	
-					<div class="ui-g-2">
-						<p:selectOneMenu id="fornecedor"
-							value="#{produtoControlador.fornecedor}" style="width:125px"
-							converter="genericConverter">
-							<f:selectItem itemLabel="Selecione" />
-							<f:selectItems value="#{produtoControlador.fornecedorList}"
-								var="fornecedor" itemLabel="#{fornecedor.nome}"
-								itemValue="#{fornecedor}" />
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-12">
+							<h:outputLabel value="Selecionar Categoria" />
+						</div>
+						<div class="col-xs-8">
+							<p:selectOneMenu id="categoria"
+								value="#{produtoControlador.categoria}" styleClass="width-full"
+								converter="genericConverter">
+								<f:selectItem itemLabel="Selecione" />
+								<f:selectItems value="#{produtoControlador.categoriaList}"
+									var="categoria" itemLabel="#{categoria.nome}"
+									itemValue="#{categoria}" />
 						</p:selectOneMenu>
+						</div>
 					</div>
-	
-					<br />
-	
-					<div class="ui-g-1">
-						<h:outputLabel value="Selecionar Categoria" />
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
+							title="Salvar" actionListener="#{produtoControlador.salvar()}"
+							update="@form" oncomplete="PF('incluirProduto').hide();" />
+						<p:commandButton id="idExcluir" value="Cancelar"
+							icon="ui-icon-cancel" title="Cancelar"
+							onclick="PF('incluirProduto').hide();" />
 					</div>
-	
-					<div class="ui-g-2">
-						<p:selectOneMenu id="categoria"
-							value="#{produtoControlador.categoria}" style="width:125px"
-							converter="genericConverter">
-							<f:selectItem itemLabel="Selecione" />
-							<f:selectItems value="#{produtoControlador.categoriaList}"
-								var="categoria" itemLabel="#{categoria.nome}"
-								itemValue="#{categoria}" />
-						</p:selectOneMenu>
-					</div>
-	
-					<br />
-	
-					<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-						title="Salvar" actionListener="#{produtoControlador.salvar()}"
-						update="@form" oncomplete="PF('incluirProduto').hide();" />
-	
-					<p:commandButton id="idExcluir" value="Cancelar"
-						icon="ui-icon-cancel" title="Cancelar"
-						onclick="PF('incluirProduto').hide();" />
-	
 				</div>
 			</p:dialog>
 		</h:form>
-
 	</ui:define>
 </ui:composition>
