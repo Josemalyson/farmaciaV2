@@ -16,23 +16,18 @@
 
 		<p:messages />
 
-		<p:fieldset legend="Adicionar Produo">
+		<p:fieldset legend="Adicionar Produto">
 			<div class="ui-g">
-				<div class="ui-g-6">
+				<div class="ui-g-8">
 					<p:outputLabel value="Pesquisar produtos: " for="dd" />
 					<p:autoComplete id="dd" dropdown="true"
 						value="#{autoCompleteView.txt6}"
 						completeMethod="#{autoCompleteView.completeText}" />
 				</div>
-
 				<br />
-
-				<div class="ui-g-3">
+				<div class="ui-g-4">
 					<p:outputLabel value="Data do pedido: " />
-				</div>
-				<div class="ui-g-3">
 					<p:outputLabel value="11/11/2016" />
-
 				</div>
 			</div>
 		</p:fieldset>
@@ -46,6 +41,13 @@
 					<p:autoComplete id="cc" dropdown="true"
 						value="#{autoCompleteView.txt6}"
 						completeMethod="#{autoCompleteView.completeText}" />
+				</div>
+
+				<br />
+
+				<div class="ui-g-3">
+					<p:outputLabel value="Nome do CLiente: " />
+					<p:outputLabel value="Jose" />
 				</div>
 			</div>
 		</p:fieldset>
@@ -88,7 +90,7 @@
 				</p:column>
 
 
-				<p:column headerText="Editar">
+				<p:column headerText="Ações">
 					<p:rowEditor />
 					<p:commandButton id="idExcluir" icon="ui-icon-trash"
 						title="Excluir"

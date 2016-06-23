@@ -1,0 +1,249 @@
+@CHARSET "UTF-8";
+
+.container{
+	min-width:990px ! important;
+}
+
+.botoes {
+	display: inline-block;
+	padding: 8px 12px;
+	margin-bottom: 0;
+	font-size: 6px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: pre-line;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: fffff;
+	border: 1px solid transparent;
+	border-radius: 6px;
+}
+
+.img-rounded-20 {
+	border-radius: 50px;
+}
+
+body {
+	font-size: 11px;
+	font-family: 'Oswald', sans-serif !important;
+	margin: 0px;
+	height: 90%;
+	font-weight: normal
+}
+
+header {
+	font-size: 14px;
+	padding: 6px;
+	margin-bottom: 18px;
+	height: 45px;
+	background-color: #5c9ccc;
+	color: #7d7d7d;
+	box-shadow: 0px 2px 2px #ccc
+}
+
+#conteudo {
+	padding: 10px 8px;
+	width: auto;
+}
+
+footer {
+	border-top: 1px solid #ccc;
+	padding: 5px 8px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: auto;
+	height: auto;
+}
+/* #1bb6ee */
+/* #59c2e3 */
+h1 {
+	font-size: 15px;
+	font-weight: 550;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 10px;
+	font-style: italic;
+	color: #5c9ccc
+}
+
+a {
+	font-size: 12px;
+	font-weight: 500;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 0px;
+	font-style: italic;
+	color: #5c9ccc;
+}
+
+.ajax-status {
+	position: fixed;
+	top: 85px;
+	right: 10px;
+	width: 35px;
+	height: 35px
+}
+
+#login-dialog {
+	width: 260px;
+	margin: auto;
+	margin-top: 150px;
+}
+
+.grid-login {
+	background-color: #fdfc8a;
+	border-radius: 8px;
+	border: 1px solid #0a0a0a;
+	margin-top: 8px;
+	padding: 10px;
+	width: 100%
+}
+
+footer {
+	border-top: 1px solid #ccc;
+	padding: 5px 8px;
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+
+h1 {
+	font-size: 17px;
+	font-weight: 500;
+	padding: 0px;
+	margin: 0px;
+	margin-left: 8px;
+	margin-bottom: 13px
+}
+
+form {
+	<!-- #12b9dc; -->
+	
+	color: #041c23;
+	margin-top: 10px;
+}
+
+#bottom {
+	position: absolute;
+	bottom: 0;
+}
+
+.field {
+	border-color: gray;
+	width: 460px;
+	height: 350px;
+	opacity:0.8;
+}
+
+.field-cadastro {
+	border-color: gray;
+	margin-top: 5px;
+	margin-left: 1px;
+	margin-right: 400px;
+	width: 1265px;
+	height: 500px;
+	opacity: 0.6
+}
+
+.logo-login h1 {
+	color: #091920;
+	font-size: 30px;
+	width: 180px;
+	height: 4 5px;
+	font-family: sans-serif;
+	font-style: inherit;
+	font-variant: normal;
+}
+
+.menu-item-apresentacao {
+	color: #fff;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+.ui-inputfield {
+	width: -1% !important;
+}
+
+input[type=radio], input[type=checkbox] {
+	margin-right: 10px !important;
+	margin-left: 10px;
+}
+
+.grid {
+	margin-left: 1px;
+	margin-top: 2px;
+	padding-left: 10px;
+}
+
+.ui-button-text {
+	font-family: "Oswald", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	
+}
+
+.ui-column-filter{
+	width: 90% !important;
+}
+
+.ui-panelgrid-cell{
+	padding: 10px 5px 5px 12px !important;
+}
+
+.ui-accordion-content {
+    padding: 0px !important;
+}
+
+.ui-selectonemenu-trigger{
+	width: 22px !important;
+	padding: 0px 2x !important;
+}
+
+.ui-radiobutton-icon{
+	margin-left: 0px !important;
+	margin-top: -2px !important	;
+}
+
+.ui-column-title{
+	font-family: "Oswald", sans-serif;
+}
+
+.fc-event{
+	font-size: 11px !important;
+	min-height: 35px;
+}
+
+.fc-title{
+	white-space: normal;
+}
+
+.CIRURGIA{
+	background-color: red;
+}
+
+.PACIENTECHEGOU{
+	background-color: green;
+}
+
+.RETORNO{
+	background-color: yellow;
+}
+
+.ui-fieldset-legend{
+	font-size: 12px;
+	margin-bottom: 0px;
+}
+
+.ui-panelgrid-content{
+	border: none;
+}

@@ -1,0 +1,78 @@
+body {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+h2 {
+	margin-bottom: 20px;
+}
+
+#logo {
+	width: 250px;
+	height: 85px;
+	margin-bottom: 20px;
+	margin-top: 15px;
+}
+
+.obrigatorio::after {
+	color: red;
+	content: " *";
+}
+
+.focus {
+	border-color: red !important;
+	outline: 0 !important;
+}
+
+.espacamento20Px {
+	margin-bottom: 20px;
+}
+
+.espacamentoTopMargin20Px {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.espacamento10PxDireita {
+	padding-right: 10px;
+}
+
+.espacamento10PxEsquerda {
+	padding-left: 10px;
+}
+
+.espacamentoCentro {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.botoesSalvarCancelar {
+	marginbottom: 50px;
+	paddingbottom: 10px;
+	text-align: center;
+}
+
+.adiconarLink {
+	text-decoration: underline;
+	color: #0088CC !important;
+}
+
+.selectOneMenuTamanhoDezPorcento {
+	width: 10%;
+}
+
+.botaoSelectEditAutoComplete {
+	margin-left: 38px;
+	height: 30px;
+	margin-bottom: 2px;
+}
+
+.loginUsuario {
+	float: right;
+	margin-top: 15px;
+}
+
+#botaoLimparValorPago{
+	margin-left: -52px;
+	margin-top: -3px;
+}
