@@ -68,7 +68,9 @@ public class ProdutoControlador extends CoreControlador {
 
 	public void novoProduto() {
 		this.produto = new Produto();
+		this.categoria = new Categoria();
 		this.produto.setCategoria(this.categoria);
+		this.fornecedor = new Fornecedor();
 		this.produto.setFornecedor(this.fornecedor);
 	}
 
@@ -91,6 +93,12 @@ public class ProdutoControlador extends CoreControlador {
 	}
 
 	public void setProduto(Produto produto) {
+		if (produto != null) {
+			this.categoria = categoriaServico.buscarCategoriaPorIdProduto(produto);
+			produto.setCategoria(categoria);
+			this.fornecedor = fornecedorServico.buscarFornecedorPorIdProduto(produto);
+			produto.setFornecedor(fornecedor);
+		}
 		this.produto = produto;
 	}
 

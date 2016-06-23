@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import br.com.farmacia.entidades.Fornecedor;
+import br.com.farmacia.entidades.Produto;
 import br.com.farmacia.repositorio.FornecedorRepositorio;
 
 public class FornecedorServico implements Serializable {
@@ -28,6 +29,10 @@ public class FornecedorServico implements Serializable {
 
 	public List<Fornecedor> listar() {
 		return fornecedorRepositorio.listar();
+	}
+
+	public Fornecedor buscarFornecedorPorIdProduto(Produto produto) {
+		return fornecedorRepositorio.buscarFornecedorPorIdProduto(produto);
 	}
 
 }
