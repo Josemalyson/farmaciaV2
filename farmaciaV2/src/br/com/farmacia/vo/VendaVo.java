@@ -16,6 +16,7 @@ public class VendaVo implements Serializable {
 	public Cliente cliente;
 	public Date dtPedido;
 	public List<ProdutoVo> produtoVoList;
+	public BigDecimal valorDesconto;
 	public BigDecimal totalDaCompra;
 	public BigDecimal totalDeDesconto;
 	public BigDecimal totalDaVenda;
@@ -74,6 +75,14 @@ public class VendaVo implements Serializable {
 
 	public void setTotalDaVenda(BigDecimal totalDaVenda) {
 		this.totalDaVenda = totalDaVenda;
+	}
+
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
 	}
 
 }

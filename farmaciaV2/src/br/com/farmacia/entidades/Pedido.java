@@ -120,4 +120,12 @@ public class Pedido extends GenericEntity {
 			return false;
 		return true;
 	}
+
+	public BigDecimal getTotalVenda() {
+		return totalVenda;
+	}
+
+	public void setTotalVenda(BigDecimal totalVenda) {
+		this.totalVenda = totalVenda;
+	}
 }

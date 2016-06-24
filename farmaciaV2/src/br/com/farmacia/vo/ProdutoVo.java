@@ -4,10 +4,10 @@ import br.com.farmacia.entidades.Produto;
 
 public class ProdutoVo {
 
-	public float quantidade;
+	public double quantidade;
 	public Produto produto;
 
-	public float getQuantidade() {
+	public double getQuantidade() {
 		return quantidade;
 	}
 
@@ -15,7 +15,7 @@ public class ProdutoVo {
 		return produto;
 	}
 
-	public void setQuantidade(float quantidade) {
+	public void setQuantidade(double quantidade) {
 		this.quantidade = quantidade;
 	}
 

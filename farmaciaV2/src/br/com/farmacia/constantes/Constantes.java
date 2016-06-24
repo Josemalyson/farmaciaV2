@@ -27,4 +27,5 @@ public abstract class Constantes {
 	public static final String PAGINA_PEDIDO = "pedido";
 	public static final BigDecimal ZERO = new BigDecimal(0);
 	public static final String ERRO_NA_EXECUÇÃO_DO_MÉTODO_ASSÍCRONO = " Erro na execução do método assícrono ";
+	public static final String PAGINA_INICIO = "index.jsf";
 }

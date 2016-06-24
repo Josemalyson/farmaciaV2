@@ -47,14 +47,17 @@
 							value="#{pedidoControlador.vendaVo.cliente}"
 							converter="entityConverter" var="cliente"
 							itemLabel="#{cliente.nome}" itemValue="#{cliente}"
-							completeMethod="#{pedidoControlador.autoCompleteCliente}" />
+							completeMethod="#{pedidoControlador.autoCompleteCliente}">
+							<p:ajax event="itemSelect" update="nomeCliente" process="@this" />
+						</p:autoComplete>
 					</div>
 
 					<br />
 
 					<div class="ui-g-3">
-						<p:outputLabel value="Nome do CLiente: " />
-						<p:outputLabel value="Jose" />
+						<p:outputLabel value="Nome do Cliente: " />
+						<p:outputLabel id="nomeCliente"
+							value="#{ pedidoControlador.vendaVo.cliente.nome}" />
 					</div>
 				</div>
 			</p:fieldset>
@@ -66,11 +69,10 @@
 					emptyMessage="Não existe Produtos cadastrados."
 					value="#{pedidoControlador.vendaVo.produtoVoList}" var="produtoVo">
 
-					<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
-						update="@form" />
+					<p:ajax event="rowEdit" update="produtos totalCompra"
+						listener="#{pedidoControlador.calcularValorTotalDaCompra()}" />
 
-					<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
-						update="@form" />
+					<p:ajax event="rowEditCancel" update="produtos" />
 
 					<p:column headerText="Quantidade">
 						<p:cellEditor>
@@ -125,28 +127,42 @@
 
 			<br />
 
+			<div class="ui-g">
+				<p:outputLabel value="Inserir desconto aqui: " />
+				<h:inputText value="#{pedidoControlador.vendaVo.valorDesconto}" />
+
+				<p:commandButton id="idDesconto" value="Desconto"
+					icon="ui-icon-check" title="Desconto"
+					actionListener="#{pedidoControlador.calcularDesconto()}"
+					update="totalCompra" />
+			</div>
+
+			<br />
+
 			<p:fieldset legend="Total da venda">
-				<div class="ui-g">
-					<div class="ui-g-4">
-						<p:outputLabel value="Valor total da compra R$: " />
-						<p:outputLabel value="1200.00 " />
+				<h:panelGroup id="totalCompra">
+					<div class="ui-g">
+						<div class="ui-g-4">
+							<p:outputLabel value="Valor total da compra R$: " />
+							<p:outputLabel value="#{pedidoControlador.vendaVo.totalDaCompra}" />
+						</div>
+						<div class="ui-g-4">
+							<p:outputLabel value="Valor do desconto R$: " />
+							<p:outputLabel value="#{pedidoControlador.vendaVo.valorDesconto}" />
+						</div>
+						<div class="ui-g-4">
+							<p:outputLabel value="Valor total da venda R$: " />
+							<p:outputLabel value="#{pedidoControlador.vendaVo.totalDaVenda}" />
+						</div>
 					</div>
-					<div class="ui-g-4">
-						<p:outputLabel value="Valor do desconto R$: " />
-						<p:outputLabel value="1200.00 " />
-					</div>
-					<div class="ui-g-4">
-						<p:outputLabel value="Valor total da venda R$: " />
-						<p:outputLabel value="1200.00 " />
-					</div>
-				</div>
+				</h:panelGroup>
 			</p:fieldset>
 
 			<br />
 
 			<p:commandButton id="idSalvar" value="Salvar" icon="ui-icon-check"
-				title="Salvar" actionListener="#{clienteControlador.salvar()}"
-				update="@form" oncomplete="PF('incluirCliente').hide();" />
+				title="Salvar" actionListener="#{pedidoControlador.salvar()}"
+				update="@form" />
 
 			<p:commandButton id="idCacelar" value="Cancelar"
 				icon="ui-icon-cancel" title="Cancelar"
