@@ -12,8 +12,6 @@
 
 			<h1>Efetuar Venda</h1>
 
-			<p:messages />
-
 			<p:fieldset legend="Adicionar Produto">
 				<div class="ui-g">
 					<div class="ui-g-8">
@@ -81,7 +79,9 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText id="quantidade" value="#{produtoVo.quantidade}"
-									style="width:100%" />
+									style="width:100%">
+									<f:convertNumber type="number" locale="pt_BR" />
+								</p:inputText>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -92,11 +92,17 @@
 					</p:column>
 
 					<p:column headerText="Preço de custo">
-						<h:outputLabel value="#{produtoVo.produto.precoCusto}" />
+						<h:outputLabel value="#{produtoVo.produto.precoCusto}">
+							<f:convertNumber currencySymbol="R$" groupingUsed="true"
+								maxFractionDigits="2" type="currency" locale="pt_BR" />
+						</h:outputLabel>
 					</p:column>
 
 					<p:column headerText="Preço de venda">
-						<h:outputLabel value="#{produtoVo.produto.precoVenda}" />
+						<h:outputLabel value="#{produtoVo.produto.precoVenda}">
+							<f:convertNumber currencySymbol="R$" groupingUsed="true"
+								maxFractionDigits="2" type="currency" locale="pt_BR" />
+						</h:outputLabel>
 					</p:column>
 
 
@@ -129,7 +135,9 @@
 
 			<div class="ui-g">
 				<p:outputLabel value="Inserir desconto aqui: " />
-				<h:inputText value="#{pedidoControlador.vendaVo.valorDesconto}" />
+				<h:inputText value="#{pedidoControlador.vendaVo.valorDesconto}">
+					<f:convertNumber type="number" locale="pt_BR" />
+				</h:inputText>
 
 				<p:commandButton id="idDesconto" value="Desconto"
 					icon="ui-icon-check" title="Desconto"
@@ -143,16 +151,25 @@
 				<h:panelGroup id="totalCompra">
 					<div class="ui-g">
 						<div class="ui-g-4">
-							<p:outputLabel value="Valor total da compra R$: " />
-							<p:outputLabel value="#{pedidoControlador.vendaVo.totalDaCompra}" />
+							<p:outputLabel value="Valor total da compra: " />
+							<p:outputLabel value="#{pedidoControlador.vendaVo.totalDaCompra}">
+								<f:convertNumber currencySymbol="R$" groupingUsed="true"
+									maxFractionDigits="2" type="currency" locale="pt_BR" />
+							</p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<p:outputLabel value="Valor do desconto R$: " />
-							<p:outputLabel value="#{pedidoControlador.vendaVo.valorDesconto}" />
+							<p:outputLabel value="Valor do desconto: " />
+							<p:outputLabel value="#{pedidoControlador.vendaVo.valorDesconto}">
+								<f:convertNumber currencySymbol="R$" groupingUsed="true"
+									maxFractionDigits="2" type="currency" locale="pt_BR" />
+							</p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<p:outputLabel value="Valor total da venda R$: " />
-							<p:outputLabel value="#{pedidoControlador.vendaVo.totalDaVenda}" />
+							<p:outputLabel value="Valor total da venda: " />
+							<p:outputLabel value="#{pedidoControlador.vendaVo.totalDaVenda}">
+								<f:convertNumber currencySymbol="R$" groupingUsed="true"
+									maxFractionDigits="2" type="currency" locale="pt_BR" />
+							</p:outputLabel>
 						</div>
 					</div>
 				</h:panelGroup>

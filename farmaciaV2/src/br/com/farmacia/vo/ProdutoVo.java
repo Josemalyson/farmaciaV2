@@ -1,11 +1,15 @@
 package br.com.farmacia.vo;
 
+import java.io.Serializable;
+
 import br.com.farmacia.entidades.Produto;
 
-public class ProdutoVo {
+public class ProdutoVo implements Serializable {
 
-	public double quantidade;
-	public Produto produto;
+	private static final long serialVersionUID = -5002662387410084825L;
+	
+	private double quantidade;
+	private Produto produto;
 
 	public double getQuantidade() {
 		return quantidade;

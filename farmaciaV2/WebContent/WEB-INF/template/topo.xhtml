@@ -13,8 +13,7 @@
 <div class="text-right loginUsuario ">
 	<h:form>
 		<span class="glyphicon glyphicon-user"></span>
-		<h:outputText value="NOME- " />
-		<p:commandLink value="Sair" action="#" />
+		<p:commandLink value="Sair" action="#{loginController.logout()}" />
 	</h:form>
 </div>
 <nav class="navbar navbar-default">
@@ -63,13 +62,19 @@
 								Fornecedores</a></li>
 					</ul></li>
 
-				<li><a
-					href="#{request.contextPath}/paginas/privado/compra/compra.jsf">Efetuar
-						Compra</a></li>
-				<li><a
-					href="#{request.contextPath}/paginas/privado/venda/venda.jsf">Efetuar
-						Venda</a></li>
 
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Vendas
+						<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a
+							href="#{request.contextPath}/paginas/privado/venda/listar.jsf">Listar
+								Venda</a></li>
+						<li><a
+							href="#{request.contextPath}/paginas/privado/venda/venda.jsf">Efetuar
+								Venda</a></li>
+					</ul></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

@@ -1,6 +1,7 @@
 package br.com.farmacia.servicos;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -19,15 +20,6 @@ public class PedidoServico implements Serializable {
 	private PedidoRepositorio pedidoRepositorio;
 	@Inject
 	private ProdutoPedidoServico produtoPedidoServico;
-	@Inject
-	private ClienteServico clienteServico;
-	@Inject
-	private ProdutoServico produtoServico;
-
-	@Transactional
-	public void excluir(Pedido pedido) {
-
-	}
 
 	public Pedido consultarPorId(Pedido pedido) {
 		return pedidoRepositorio.consultarPorId(pedido);
@@ -42,7 +34,7 @@ public class PedidoServico implements Serializable {
 		pedido.setTotalVenda(vendaVo.getTotalDaVenda());
 		pedido.setValorTotal(vendaVo.getTotalDaCompra());
 		Pedido pedidoBD = pedidoRepositorio.salvar(pedido);
-		
+
 		for (ProdutoVo produtoVo : vendaVo.getProdutoVoList()) {
 			ProdutoPedidoPK produtoPedidoPK = new ProdutoPedidoPK();
 			produtoPedidoPK.setIdPedido(pedidoBD.getId());
@@ -52,6 +44,10 @@ public class PedidoServico implements Serializable {
 			produtoPedido.setQtdProduto((int) produtoVo.getQuantidade());
 			produtoPedidoServico.salvar(produtoPedido);
 		}
+	}
+
+	public List<Pedido> litar() {
+		return pedidoRepositorio.listar();
 	}
 
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="vendaForm" prependId="false">
+			<h1>Listar Vendas</h1>
+
+			<p:dataTable id="venda" emptyMessage="Não existe venda cadastrados."
+				value="#{manterPedidoControlador.pedidoList}" var="pedido">
+
+				<p:column headerText="Cliente">
+					<h:outputLabel value="#{pedido.cliente.nome}" />
+				</p:column>
+
+				<p:column headerText="Data da venda">
+					<h:outputLabel value="#{pedido.dtPedido}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputLabel>
+				</p:column>
+
+				<p:column headerText="Total da venda">
+					<h:outputLabel value="#{pedido.totalVenda}">
+						<f:convertNumber currencySymbol="R$" groupingUsed="true"
+							maxFractionDigits="2" type="currency" locale="pt_BR" />
+					</h:outputLabel>
+				</p:column>
+
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -12,14 +12,14 @@ public class VendaVo implements Serializable {
 
 	private static final long serialVersionUID = 1049660646230327825L;
 	
-	public Produto produto;
-	public Cliente cliente;
-	public Date dtPedido;
-	public List<ProdutoVo> produtoVoList;
-	public BigDecimal valorDesconto;
-	public BigDecimal totalDaCompra;
-	public BigDecimal totalDeDesconto;
-	public BigDecimal totalDaVenda;
+	private Produto produto;
+	private Cliente cliente;
+	private Date dtPedido;
+	private List<ProdutoVo> produtoVoList;
+	private BigDecimal valorDesconto;
+	private BigDecimal totalDaCompra;
+	private BigDecimal totalDeDesconto;
+	private BigDecimal totalDaVenda;
 
 	public Produto getProduto() {
 		return produto;
